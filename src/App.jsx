@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes } from 'react-router-dom'
 import './App.css'
-import Nav from './components/Nav'
-
-function App() {
-  const [count, setCount] = useState(0)
+import BookGrid from './components/BookGrid'
+import Header from './components/Header'
+export default function App() {
 
   return (
-    <>
-        <Nav />
-        
-    </>
+    <BrowserRouter>
+    <div>
+        <Header />
+        <BookGrid />
+
+    </div>
+      </BrowserRouter>
   )
 }
-
-export default App

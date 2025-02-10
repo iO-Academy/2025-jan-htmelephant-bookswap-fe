@@ -4,7 +4,7 @@ import BookCard from "./BookCard";
         const [books, setBooks] = useState([]);
         function getBooks() {
             fetch("https://book-swap-api.dev.io-academy.uk/api/books")
-            .then((response) => response.json())
+            .then((res) => res.json())
             .then((bookInfo) => {
                 setBooks(bookInfo.data)
                 console.log(bookInfo.data)
@@ -15,14 +15,14 @@ import BookCard from "./BookCard";
 
         return (
             <div >
-                    {books.map(function (book) {
+                    {books.map(function (bookApi) {
                        return <BookCard 
-                       key={book.id} 
-                       title={book.title}
-                       image={book.image} 
-                       genre={book.genre.name}
-                       author={book.author}
-                       id={book.id}/>
+                       key={bookApi.id} 
+                       title={bookApi.title}
+                       image={bookApi.image} 
+                       genre={bookApi.genre.name}
+                       author={bookApi.author}
+                       id={bookApi.id}/>
                     })}
              </div>
         );

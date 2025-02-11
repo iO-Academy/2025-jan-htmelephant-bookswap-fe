@@ -3,10 +3,11 @@ import BookCard from "./BookCard";
 export default function BookGrid() {
   const [books, setBooks] = useState([]);
   function getBooks() {
-    fetch("https://book-swap-api.dev.io-academy.uk/api/books")
+    fetch("https://book-swap-api.dev.io-academy.uk/api/books?claimed=0")
       .then((res) => res.json())
       .then((bookInfo) => {
         setBooks(bookInfo.data);
+        console.log(bookInfo)
       });
   }
 

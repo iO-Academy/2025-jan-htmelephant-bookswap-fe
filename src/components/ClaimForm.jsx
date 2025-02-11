@@ -4,6 +4,7 @@ export default function ClaimForm({ claimedBy, id, title }) {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [response, setResponse] = useState("");
+  const [hideForm, setHideForm] = useState(false)
 
   function claimBook(e) {
     e.preventDefault();
@@ -16,7 +17,15 @@ export default function ClaimForm({ claimedBy, id, title }) {
         Accept: "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.status)
+        if (res.status == 422 || res.status == 404 || res.status == 400) {
+          setHideForm(false)
+        } else if (res.status == 200){
+          setHideForm(true)
+        }
+        return res.json()
+      })
       .then((data) => {
         console.log(data);
         setResponse(data.message);
@@ -33,7 +42,7 @@ export default function ClaimForm({ claimedBy, id, title }) {
 
   return (
     <>
-      {claimedBy === null && (
+      {claimedBy === null && !hideForm && (
         <form onSubmit={claimBook}>
           <label htmlFor="name">Name: </label>
           <input onChange={handleInput} id="name" type="text" name="name" />
@@ -46,6 +55,7 @@ export default function ClaimForm({ claimedBy, id, title }) {
       )}
 
       {response && <p>{response}</p>}
+
       {claimedBy !== null && <p>Claimed by {claimedBy}</p>}
     </>
   );

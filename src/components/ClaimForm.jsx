@@ -3,6 +3,10 @@ import { useState } from "react"
 export default function ClaimForm({claimedBy}) {
 
     function claimBook(){
+
+    }
+
+    function handleInput(){
         
     }
 

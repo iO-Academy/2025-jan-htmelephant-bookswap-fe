@@ -7,7 +7,6 @@ export default function BookGrid({ claimed }) {
       .then((res) => res.json())
       .then((bookInfo) => {
         setBooks(bookInfo.data);
-        console.log(bookInfo)
       });
   }
 

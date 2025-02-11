@@ -3,7 +3,7 @@ import BookGrid from "../components/BookGrid";
 export default function HomePage() {
   return (
     <div className="">
-      <BookGrid />
+      <BookGrid claimed={0}/>
     </div>
   );
 }

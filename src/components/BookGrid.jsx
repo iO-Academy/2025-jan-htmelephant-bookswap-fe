@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import BookCard from "./BookCard";
-export default function BookGrid() {
+export default function BookGrid({ claimed }) {
   const [books, setBooks] = useState([]);
   function getBooks() {
-    fetch("https://book-swap-api.dev.io-academy.uk/api/books")
+    fetch(`https://book-swap-api.dev.io-academy.uk/api/books?claimed=${claimed}`)
       .then((res) => res.json())
       .then((bookInfo) => {
         setBooks(bookInfo.data);

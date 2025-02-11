@@ -6,8 +6,8 @@ export default function BookCard({ title, author, genre, image, id }) {
       <Link to={`/books/${id}`}>
         <img src={image} alt="" />
 
-        <ul key={id}>
-          <li>{title}</li>
+        <ul>
+          <li className="text-xl">{title}</li>
           <li>{author}</li>
           <li>{genre}</li>
         </ul>

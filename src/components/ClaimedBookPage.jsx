@@ -11,7 +11,7 @@ export default function ClaimedBookPage() {
 
   return (
     <div>
-      <Link to="/" onClick={handleClaimedBooks}>
+      <Link to="/claimed-books/" onClick={handleClaimedBooks}>
         Claimed Books
       </Link>
     </div>

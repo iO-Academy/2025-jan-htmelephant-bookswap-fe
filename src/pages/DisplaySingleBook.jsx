@@ -18,7 +18,6 @@ export default function DisplaySingleBook() {
         fetch (`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
             .then((response) => response.json())
             .then((bookInfo) => {
-                console.log(bookInfo.data)
                 setTitle(bookInfo.data.title)
                 setAuthor(bookInfo.data.author)
                 setYear(bookInfo.data.year)
@@ -29,18 +28,16 @@ export default function DisplaySingleBook() {
     }
 
     useEffect(getBookData, [])
-   
-   
     return (
         <div>
-                <ul>
-                <img src={image} alt={title} />
-                    <li>{title}</li>
-                    <li>{author}</li>
-                    <li>{year}</li>
-                    <li>{genre}</li>
-                    <li>{blurb}</li>
-                    </ul> 
+            <ul>
+            <img src={image} alt="" />
+                <li>{title}</li>
+                <li>{author}</li>
+                <li>{year}</li>
+                <li>{genre}</li>
+                <li>{blurb}</li>
+            </ul> 
         </div>
     )
 }

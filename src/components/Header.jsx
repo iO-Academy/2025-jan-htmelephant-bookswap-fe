@@ -5,8 +5,7 @@ export default function Header() {
 
 return (
     <>
-    <Nav />
-    <Button />
+        <Nav />
     </>
 )
 }

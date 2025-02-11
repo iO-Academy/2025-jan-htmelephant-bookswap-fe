@@ -8,12 +8,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/books/:id" element={<DisplaySingleBook/>} />
-      <Route path="*" element={<h1>Not Found</h1>} />
-
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/books/:id" element={<DisplaySingleBook/>} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
 
     </BrowserRouter>

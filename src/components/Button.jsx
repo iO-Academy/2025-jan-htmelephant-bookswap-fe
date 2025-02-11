@@ -5,8 +5,4 @@ export default function Button() {
             Button
         </button>
     );
-
-
-
-
- }
+}

@@ -1,13 +1,19 @@
 import { useState } from "react"
 
 export default function ClaimForm({claimedBy}) {
+    const [fname, setFname] = useState();
+    const [email, setEmail] = useState();
 
-    function claimBook(){
-
+    
+    function claimBook(){   
     }
 
-    function handleInput(){
-        
+    function handleInput(e){
+        if(e.target.id === "fname") {
+            setFname(e.target.value)
+        } else if(e.target.id === "email") {
+            setEmail(e.target.value)
+        }
     }
 
     return(
@@ -15,10 +21,10 @@ export default function ClaimForm({claimedBy}) {
             {claimedBy === null &&
                 <form>
                     <label htmlFor="fname">First Name</label>
-                    <input id="fname" type="text" name="fname"/>
+                    <input onChange={handleInput} id="fname" type="text" name="fname"/>
 
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email" name="email"/>
+                    <input onChange={handleInput} id="email" type="email" name="email"/>
 
                     <input type="submit" value="Claim Book"/>
                 </form>

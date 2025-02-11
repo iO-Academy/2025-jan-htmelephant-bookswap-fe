@@ -31,8 +31,8 @@ export default function DisplaySingleBook() {
   return (
     <div className="grid grid-cols-1 gap-5 bg-gray-200 p-5 md:grid-cols-2">
       <img src={image} alt="" />
-      <ul>
-        <li>{title}</li>
+      <ul className="flex flex-col justify-center gap-2 max-sm:text-center">
+        <li className="text-2xl">{title}</li>
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>

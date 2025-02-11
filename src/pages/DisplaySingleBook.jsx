@@ -27,8 +27,11 @@ export default function DisplaySingleBook() {
         setGenre(bookInfo.data.genre.name);
         setImage(bookInfo.data.image);
         setClaimedBy(bookInfo.data.claimed_by_name)
+        console.log(bookInfo)
       });
+      
   }
+
 
   useEffect(getBookData, []);
   return (
@@ -39,7 +42,7 @@ export default function DisplaySingleBook() {
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>
-        <ClaimForm claimedBy={claimedBy} />
+        <ClaimForm claimedBy={claimedBy} id={id} />
         <li>{blurb}</li>
       </ul>
     </div>

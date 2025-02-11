@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
-    <nav className="flex p-4 text-2xl sm:text-center md:text-left">
+    <nav className="flex justify-center p-4 md:justify-start">
       <Link to="/">Book Swap</Link>
     </nav>
   );

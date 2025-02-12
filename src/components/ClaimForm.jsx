@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Errors from "./Errors";
 
 export default function ClaimForm({ claimedBy, id, title }) {

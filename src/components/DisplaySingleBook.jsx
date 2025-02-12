@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ClaimForm from "../components/ClaimForm";
+import { useParams } from "react-router-dom";
+import ClaimForm from "./ClaimForm";
 
 export default function DisplaySingleBook() {
   const { id } = useParams();

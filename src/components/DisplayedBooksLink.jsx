@@ -4,10 +4,6 @@ import { NavLink } from "react-router-dom";
 export default function DisplayedBooksLink({ text, link }) {
   const [PageSelected, setPageSelected] = useState(false);
 
-  function handleNavClick() {
-    setPageSelected(!PageSelected);
-  }
-
   return (
     <NavLink
       to={link}

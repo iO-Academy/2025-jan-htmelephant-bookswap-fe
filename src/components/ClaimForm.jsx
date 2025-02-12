@@ -19,7 +19,6 @@ export default function ClaimForm({ claimedBy, id, title }) {
       },
     })
       .then((res) => {
-        console.log(res.status);
         if (res.status == 422 || res.status == 404 || res.status == 400) {
           setHideForm(false);
         } else if (res.status == 200) {
@@ -28,11 +27,10 @@ export default function ClaimForm({ claimedBy, id, title }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        if (data.errors) {
-          setErrors(data.errors); 
-        } else {
-        setResponse(data.message);
+            if (data.errors) {
+            setErrors(data.errors); 
+            } else {
+            setResponse(data.message);
         }
       })
   }

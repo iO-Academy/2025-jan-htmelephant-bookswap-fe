@@ -2,8 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function DisplayedBooksLink({ text, link }) {
-  const [PageSelected, setPageSelected] = useState(false);
-
+  
   return (
     <NavLink
       to={link}

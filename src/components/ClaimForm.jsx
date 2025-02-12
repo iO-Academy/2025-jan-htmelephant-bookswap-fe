@@ -5,6 +5,7 @@ export default function ClaimForm({ claimedBy, id }) {
   const [email, setEmail] = useState();
   const [response, setResponse] = useState("");
   const [hideForm, setHideForm] = useState(false);
+  const [errors, setErrors] = useState({});
 
   function claimBook(e) {
     e.preventDefault();
@@ -28,8 +29,13 @@ export default function ClaimForm({ claimedBy, id }) {
       })
       .then((data) => {
         console.log(data);
+        if (data.errors) {
+          setErrors(data.errors); //store the error messages
+        } else {
         setResponse(data.message);
-      });
+        }
+      })
+      .catch(() => setResponse("Try again mate!"))
   }
 
   function handleInput(e) {
@@ -56,7 +62,10 @@ export default function ClaimForm({ claimedBy, id }) {
               id="name"
               type="text"
               name="name"
+              value={name}
             />
+            {errors.name && <p className="text-red-500">{errors.name[0]}</p>} {/* Name error */}
+
 
             <label htmlFor="email">Email: </label>
             <input
@@ -66,7 +75,10 @@ export default function ClaimForm({ claimedBy, id }) {
               id="email"
               type="email"
               name="email"
+              value={email}
             />
+            {errors.email && <p className="text-red-500">{errors.email[0]}</p>} {/* Email error */}
+
           </div>
 
           <input

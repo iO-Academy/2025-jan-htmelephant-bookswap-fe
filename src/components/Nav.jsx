@@ -1,14 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import DisplayedBooksLink from "./DisplayedBooksLink";
 
 export default function Nav() {
-  const [PageSelected, setPageSelected] = useState(false);
-
-  function handleNavClick() {
-    setPageSelected(!PageSelected);
-  }
-
+  
   return (
     <nav className="grid grid-cols-1 items-center p-4 max-sm:flex-col max-sm:items-center md:grid-cols-2">
       <Link className="text-center md:text-left" to="/">

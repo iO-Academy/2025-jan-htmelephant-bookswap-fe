@@ -40,8 +40,8 @@ export default function DisplaySingleBook() {
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>
-        <li>{blurb}</li>
         <ClaimForm claimedBy={claimedBy} id={id} title={title} />
+        <li>{blurb}</li>
       </ul>
     </div>
   );

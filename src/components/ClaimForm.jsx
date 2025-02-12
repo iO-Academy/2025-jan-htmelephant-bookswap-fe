@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function ClaimForm({ claimedBy, id, title }) {
+export default function ClaimForm({ claimedBy, id }) {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [response, setResponse] = useState("");
-  const [hideForm, setHideForm] = useState(false)
+  const [hideForm, setHideForm] = useState(false);
 
   function claimBook(e) {
     e.preventDefault();
@@ -18,13 +18,13 @@ export default function ClaimForm({ claimedBy, id, title }) {
       },
     })
       .then((res) => {
-        console.log(res.status)
+        console.log(res.status);
         if (res.status == 422 || res.status == 404 || res.status == 400) {
-          setHideForm(false)
-        } else if (res.status == 200){
-          setHideForm(true)
+          setHideForm(false);
+        } else if (res.status == 200) {
+          setHideForm(true);
         }
-        return res.json()
+        return res.json();
       })
       .then((data) => {
         console.log(data);
@@ -43,20 +43,45 @@ export default function ClaimForm({ claimedBy, id, title }) {
   return (
     <>
       {claimedBy === null && !hideForm && (
-        <form onSubmit={claimBook}>
-          <label htmlFor="name">Name: </label>
-          <input onChange={handleInput} id="name" type="text" name="name" />
+        <form
+          className="flex flex-col gap-2 border-1 p-3 max-sm:text-left"
+          onSubmit={claimBook}
+        >
+          <div className="flex flex-col gap-2">
+            <label htmlFor="name">Name: </label>
+            <input
+              placeholder="Name"
+              className="border-1 p-1"
+              onChange={handleInput}
+              id="name"
+              type="text"
+              name="name"
+            />
 
-          <label htmlFor="email">Email: </label>
-          <input onChange={handleInput} id="email" type="email" name="email" />
+            <label htmlFor="email">Email: </label>
+            <input
+              placeholder="Email"
+              className="border-1 p-1"
+              onChange={handleInput}
+              id="email"
+              type="email"
+              name="email"
+            />
+          </div>
 
-          <input type="submit" value="Claim Book" />
+          <input
+            className="mt-2 border-1 p-1"
+            type="submit"
+            value="Claim Book"
+          />
         </form>
       )}
 
-      {response && <p>{response}</p>}
+      {response && <p className="text-red-500">{response}</p>}
 
-      {claimedBy !== null && <p>Claimed by {claimedBy}</p>}
+      {claimedBy !== null && (
+        <p className="text-red-500">Claimed by {claimedBy}</p>
+      )}
     </>
   );
 }

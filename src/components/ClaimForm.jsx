@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Errors from "./Errors";
 
 export default function ClaimForm({ claimedBy, id, title }) {
   const [name, setName] = useState();
@@ -19,7 +20,6 @@ export default function ClaimForm({ claimedBy, id, title }) {
       },
     })
       .then((res) => {
-        console.log(res.status);
         if (res.status == 422 || res.status == 404 || res.status == 400) {
           setHideForm(false);
         } else if (res.status == 200) {
@@ -28,11 +28,10 @@ export default function ClaimForm({ claimedBy, id, title }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        if (data.errors) {
-          setErrors(data.errors); 
-        } else {
-        setResponse(data.message);
+            if (data.errors) {
+            setErrors(data.errors); 
+            } else {
+            setResponse(data.message);
         }
       })
   }
@@ -63,8 +62,7 @@ export default function ClaimForm({ claimedBy, id, title }) {
               name="name"
               value={name}
             />
-            {errors.name && <p className="text-red-500">{errors.name[0]}</p>} 
-
+            {errors.name && <Errors errors={errors.name[0]} />}
 
             <label htmlFor="email">Email: </label>
             <input
@@ -76,8 +74,8 @@ export default function ClaimForm({ claimedBy, id, title }) {
               name="email"
               value={email}
             />
-            {errors.email && <p className="text-red-500">{errors.email[0]}</p>}
-
+            {errors.email && <Errors errors={errors.email[0]} />}
+      
           </div>
 
           <input

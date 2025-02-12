@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ClaimForm({ claimedBy, id }) {
+export default function ClaimForm({ claimedBy, id, title }) {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [response, setResponse] = useState("");
@@ -30,12 +30,11 @@ export default function ClaimForm({ claimedBy, id }) {
       .then((data) => {
         console.log(data);
         if (data.errors) {
-          setErrors(data.errors); //store the error messages
+          setErrors(data.errors); 
         } else {
         setResponse(data.message);
         }
       })
-      .catch(() => setResponse("Try again mate!"))
   }
 
   function handleInput(e) {
@@ -64,7 +63,7 @@ export default function ClaimForm({ claimedBy, id }) {
               name="name"
               value={name}
             />
-            {errors.name && <p className="text-red-500">{errors.name[0]}</p>} {/* Name error */}
+            {errors.name && <p className="text-red-500">{errors.name[0]}</p>} 
 
 
             <label htmlFor="email">Email: </label>
@@ -77,19 +76,19 @@ export default function ClaimForm({ claimedBy, id }) {
               name="email"
               value={email}
             />
-            {errors.email && <p className="text-red-500">{errors.email[0]}</p>} {/* Email error */}
+            {errors.email && <p className="text-red-500">{errors.email[0]}</p>}
 
           </div>
 
           <input
-            className="mt-2 border-1 p-1"
+            className="mt-2 border-1 p-1 hover:bg-[#7600DC] hover:text-[#F0F0F0]"
             type="submit"
             value="Claim Book"
           />
         </form>
       )}
 
-      {response && <p className="text-red-500">{response}</p>}
+      {response && <p className="text-green-700">You've claimed <strong>{title}</strong><br/> Happy reading!</p>}
 
       {claimedBy !== null && (
         <p className="text-red-500">Claimed by {claimedBy}</p>

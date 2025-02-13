@@ -21,7 +21,6 @@ export default function BookGrid({ claimed }) {
       .then((res) => res.json())
       .then((data) => {
         setGenres(data.data);
-        console.log(data.data)
       });
   }
 
@@ -32,12 +31,10 @@ export default function BookGrid({ claimed }) {
   useEffect(getGenres, [])
 
   return (
-    
     <>
       <select onChange={(e) => setGenreId(parseInt(e.target.value))}>
         <option  value={0} defaultValue>Any</option>
         {genres.map((genre) => {
-          // console.log(genre)
           return <option key={genre.id}  value={genre.id}>{genre.name}</option>
         })}
       </select>

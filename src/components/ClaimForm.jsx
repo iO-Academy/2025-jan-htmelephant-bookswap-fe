@@ -3,8 +3,8 @@ import Errors from "./Errors";
 import ReturnForm from "./ReturnForm";
 
 export default function ClaimForm({ claimedBy, id, title, fn }) {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [response, setResponse] = useState("");
   const [hideForm, setHideForm] = useState(false);
   const [errors, setErrors] = useState({});

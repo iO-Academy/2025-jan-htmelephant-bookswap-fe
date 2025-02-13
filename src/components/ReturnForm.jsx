@@ -2,7 +2,7 @@ import { useState } from "react";
 import Errors from "./Errors";
 
 export default function ReturnForm({ claimedBy, id, fn }) {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [hideForm, setHideForm] = useState(false);
   const [response, setResponse] = useState("");
   const [errors, setErrors] = useState({});
@@ -36,8 +36,9 @@ export default function ReturnForm({ claimedBy, id, fn }) {
           setErrors(data.errors);
         } else {
           setResponse(data.message);
-          setHideForm(true);
+          // setHideForm(true);
           fn();
+          console.log(data);
         }
       });
   }
@@ -67,6 +68,7 @@ export default function ReturnForm({ claimedBy, id, fn }) {
                 name="email"
                 value={email}
               />
+              {response && <p>{response}</p>}
               {errors && <Errors errors={errors[0]} />}
             </div>
 

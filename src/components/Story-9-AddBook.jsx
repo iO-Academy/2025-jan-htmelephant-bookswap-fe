@@ -11,7 +11,7 @@ export default function AddBook() {
     const [genre, setGenre] = useState(null)
     const [year, setYear] = useState(NaN)
     const [pageCount, setPageCount] = useState("")
-    const [imageURL, setImageURL] = useState("https://placehold.co/600x400/EEE/31343C") // declare placeholder image if user doesnt input an image
+    const [imageURL, setImageURL] = useState("https://placehold.co/600x400/EEE/31343C") // declare placeholder image if user doesnt input an image url
     const [blurb, setBlurb] = useState("")
     
     const [postBody, setPostBody] = useState({})
@@ -37,7 +37,6 @@ export default function AddBook() {
 
     function submitBook(e) {
         e.preventDefault()
-        console.log("submitting book")
         try{
             fetch('https://book-swap-api.dev.io-academy.uk/api/books', {
                 mode: 'cors',
@@ -53,17 +52,14 @@ export default function AddBook() {
                         setSuccess(true)
                     }
                     return res.json()
-                })
+            })
                 .then(data => {
-                    console.log(data)
                     if (data.errors){
                         setErrors(data.errors)
                     }
             })
-
         } catch(err) {
             console.error(err)
-            console.log("catch in submit book running - error has occured")
         }
     }
 
@@ -78,7 +74,6 @@ export default function AddBook() {
         if (imageURL) body.image = imageURL
 
         setPostBody(body)
-
     }
 
     function handleInput(e){
@@ -142,6 +137,7 @@ export default function AddBook() {
 
                         <label htmlFor="image">Image URL</label>
                         <input className="border-1 p-2 rounded" onChange={handleInput} type="text" id="image" name="image" />
+                        {errors.image && <p className="text-red-500">{errors.image[0]}</p>}
 
                         <label htmlFor="blurb">Blurb</label>
                         <textarea className="border-1 p-2 rounded" onChange={handleInput} id="blurb" name="blurb" />

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 export default function BookGrid({ claimed }) {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([])
+
+  const [genres, setGenres] = useState([])
+
   function getBooks() {
     fetch(`https://book-swap-api.dev.io-academy.uk/api/books?claimed=${claimed}`)
       .then((res) => res.json())
@@ -10,7 +13,17 @@ export default function BookGrid({ claimed }) {
       });
   }
 
+  function getGenres(){
+    fetch(`https://book-swap-api.dev.io-academy.uk/api/genres`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGenres(data);
+        console.log(data.data)
+      });
+  }
+
   useEffect(getBooks, [claimed]);
+  useEffect(getGenres, [])
 
   return (
     <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-2 md:gap-6 md:p-10 lg:grid-cols-3">

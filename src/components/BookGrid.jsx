@@ -32,12 +32,15 @@ export default function BookGrid({ claimed }) {
 
   return (
     <>
-      <select onChange={(e) => setGenreId(parseInt(e.target.value))}>
-        <option  value={0} defaultValue>Any</option>
-        {genres.map((genre) => {
-          return <option key={genre.id}  value={genre.id}>{genre.name}</option>
-        })}
-      </select>
+      <div className="p-2">
+        <label htmlFor="genre">Genre: </label>
+        <select id="genre" className="border-1 p-2 rounded" onChange={(e) => setGenreId(parseInt(e.target.value))}>
+          <option  value={0} defaultValue>Any</option>
+          {genres.map((genre) => {
+            return <option key={genre.id}  value={genre.id}>{genre.name}</option>
+          })}
+        </select>
+      </div>
 
       <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-2 md:gap-6 md:p-10 lg:grid-cols-3">
         {books.map(function (book) {

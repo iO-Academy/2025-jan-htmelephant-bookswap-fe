@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Errors from "./Errors";
 import ReturnForm from "./ReturnForm";
 
-export default function ClaimForm({ claimedBy, id, title }) {
+export default function ClaimForm({ claimedBy, id, title, fn }) {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [response, setResponse] = useState("");
@@ -29,12 +29,14 @@ export default function ClaimForm({ claimedBy, id, title }) {
         return res.json();
       })
       .then((data) => {
-            if (data.errors) {
-            setErrors(data.errors); 
-            } else {
-            setResponse(data.message);
+        if (data.errors) {
+          setErrors(data.errors);
+        } else {
+          setResponse(data.message);
+          setHideForm(true);
+          fn();
         }
-      })
+      });
   }
 
   function handleInput(e) {
@@ -78,7 +80,6 @@ export default function ClaimForm({ claimedBy, id, title }) {
               value={email}
             />
             {errors.email && <Errors errors={errors.email[0]} />}
-      
           </div>
 
           <input
@@ -89,12 +90,10 @@ export default function ClaimForm({ claimedBy, id, title }) {
         </form>
       )}
 
-      {response && <p className="text-green-700">You've claimed <strong>{title}</strong><br/> Happy reading!</p>}
-
       {claimedBy !== null && (
         <>
           <p className="text-red-500">Claimed by {claimedBy}</p>
-          <ReturnForm claimedBy={claimedBy} id={id} email={email}/>
+          <ReturnForm claimedBy={claimedBy} id={id} email={email} />
         </>
       )}
     </>

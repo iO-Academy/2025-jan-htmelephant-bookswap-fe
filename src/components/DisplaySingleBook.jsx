@@ -40,7 +40,17 @@ export default function DisplaySingleBook() {
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>
-        <ClaimForm claimedBy={claimedBy} id={id} title={title} />
+        {claimedBy === null ? (
+          <ClaimForm
+            claimedBy={claimedBy}
+            id={id}
+            title={title}
+            fn={getBookData}
+          />
+        ) : (
+          <ReturnForm claimedBy={claimedBy} id={id} fn={getBookData} />
+        )}
+        {/* <ClaimForm claimedBy={claimedBy} id={id} title={title} /> */}
         <li>{blurb}</li>
       </ul>
     </div>

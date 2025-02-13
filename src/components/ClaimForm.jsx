@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Errors from "./Errors";
+import ReturnForm from "./ReturnForm";
 
 export default function ClaimForm({ claimedBy, id, title }) {
   const [name, setName] = useState();
@@ -43,6 +44,8 @@ export default function ClaimForm({ claimedBy, id, title }) {
       setEmail(e.target.value);
     }
   }
+
+  // useEffect (claimBook, [claimedBy])
 
   return (
     <>
@@ -89,7 +92,10 @@ export default function ClaimForm({ claimedBy, id, title }) {
       {response && <p className="text-green-700">You've claimed <strong>{title}</strong><br/> Happy reading!</p>}
 
       {claimedBy !== null && (
-        <p className="text-red-500">Claimed by {claimedBy}</p>
+        <>
+          <p className="text-red-500">Claimed by {claimedBy}</p>
+          <ReturnForm claimedBy={claimedBy} id={id} email={email}/>
+        </>
       )}
     </>
   );

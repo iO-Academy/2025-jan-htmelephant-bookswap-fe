@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClaimForm from "./ClaimForm";
+import ReturnForm from "./ReturnForm";
 
 export default function DisplaySingleBook() {
   const { id } = useParams();
@@ -30,7 +31,7 @@ export default function DisplaySingleBook() {
       });
   }
 
-  useEffect(getBookData, []);
+  useEffect(getBookData, [claimedBy]);
   return (
     <div className="grid grid-cols-1 gap-5 bg-gray-200 p-5 md:grid-cols-2">
       <img src={image} alt="" />

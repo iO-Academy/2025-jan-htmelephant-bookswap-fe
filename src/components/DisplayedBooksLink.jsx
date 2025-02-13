@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function DisplayedBooksLink({ text, link }) {
+export default function DisplayedBooksLink({ text, link, className }) {
   
   return (
     <NavLink
       to={link}
+      className={className}
       style={({ isActive }) => ({
         fontWeight: isActive ? "bold" : "normal",
         padding: "5px",

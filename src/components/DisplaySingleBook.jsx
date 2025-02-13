@@ -16,6 +16,7 @@ export default function DisplaySingleBook() {
   const [image, setImage] = useState([]);
   const [year, setYear] = useState([]);
   const [claimedBy, setClaimedBy] = useState("");
+  const [message, setMessage] = useState("");
 
   function getBookData() {
     fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
@@ -40,17 +41,26 @@ export default function DisplaySingleBook() {
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>
+        {claimedBy && (
+          <li className="text-red-500">
+            This book is claimed by <strong>{claimedBy}</strong>.
+          </li>
+        )}
         {claimedBy === null ? (
           <ClaimForm
-            claimedBy={claimedBy}
             id={id}
             title={title}
-            fn={getBookData}
+            getBookData={getBookData}
+            setMessage={setMessage}
           />
         ) : (
-          <ReturnForm claimedBy={claimedBy} id={id} fn={getBookData} />
+          <ReturnForm
+            id={id}
+            getBookData={getBookData}
+            setMessage={setMessage}
+          />
         )}
-        {/* <ClaimForm claimedBy={claimedBy} id={id} title={title} /> */}
+        {message && <p className="text-green-700">{message}</p>}
         <li>{blurb}</li>
       </ul>
     </div>

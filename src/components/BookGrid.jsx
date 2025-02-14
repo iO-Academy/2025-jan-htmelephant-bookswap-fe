@@ -20,7 +20,7 @@ export default function BookGrid({ claimed }) {
 
   useEffect(() => {
     getBooks(genreId, search)
-  }, [claimed, genreId])
+  }, [claimed, genreId, search])
 
   useEffect(getGenres, [])
 

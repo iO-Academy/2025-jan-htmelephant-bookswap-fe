@@ -94,8 +94,10 @@ export default function AddBook() {
                 break;
             case "image":
                 setImageURL(e.target.value)
+                break;
             case "blurb":
                 setBlurb(e.target.value)
+                break;
             default:
                 break;
         }

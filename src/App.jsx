@@ -13,8 +13,8 @@ export default function App() {
         <Route path="/" element={<BookGrid claimed={0}/>} />
         <Route path="/books/:id" element={<DisplaySingleBook />} />
         <Route path="/claimed-books/" element={<BookGrid claimed={1} />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/addbook" element={<AddBook />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );

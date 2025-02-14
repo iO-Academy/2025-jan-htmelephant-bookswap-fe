@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 
 export default function AddBook() {
 
-    //image url : https://placehold.co/600x400/EEE/31343C
-
     const [genres, setGenres] = useState([])
 
     const [title, setTitle] = useState("")
@@ -11,7 +9,7 @@ export default function AddBook() {
     const [genre, setGenre] = useState(null)
     const [year, setYear] = useState(NaN)
     const [pageCount, setPageCount] = useState("")
-    const [imageURL, setImageURL] = useState("https://placehold.co/600x400/EEE/31343C") // declare placeholder image if user doesnt input an image url
+    const [imageURL, setImageURL] = useState("") // declare placeholder image if user doesnt input an image url
     const [blurb, setBlurb] = useState("")
     
     const [postBody, setPostBody] = useState({})
@@ -108,7 +106,6 @@ export default function AddBook() {
     return (
         <>
             <div className="flex justify-center">
-
                 {!success && 
                     <form onSubmit={submitBook} className="grid grid-cols-1 w-10/12 gap-2 md:w-4/12">
                         <label htmlFor="title">Title (Required)</label>
@@ -147,7 +144,6 @@ export default function AddBook() {
                 }
 
                 {success && <p className="text-center text-2xl p-4">You Submitted a book! <br /> Thank You!</p>}
-
             </div>
         </>
     )

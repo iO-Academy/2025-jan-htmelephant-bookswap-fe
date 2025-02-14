@@ -12,7 +12,7 @@ export default function AddBook() {
     const [imageURL, setImageURL] = useState("") // declare placeholder image if user doesnt input an image url
     const [blurb, setBlurb] = useState("")
     
-    const [postBody, setPostBody] = useState({})
+    // const [postBody, setPostBody] = useState({})
 
     const [errors, setErrors] = useState({})
 
@@ -29,7 +29,7 @@ export default function AddBook() {
             .then(res => res.json())
             .then(data => {
                 setGenres(data.data)
-                setGenre(0)
+                setGenre(1)
         })
     }
 
@@ -43,7 +43,7 @@ export default function AddBook() {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body : JSON.stringify(postBody)
+                body : JSON.stringify(createPostBody())
             })
                 .then(res => {
                     if (res.status == 201) {
@@ -71,7 +71,8 @@ export default function AddBook() {
         if (blurb) body.blurb = blurb
         if (imageURL) body.image = imageURL
 
-        setPostBody(body)
+        // setPostBody(body)
+        return body;
     }
 
     function handleInput(e){
@@ -101,7 +102,7 @@ export default function AddBook() {
     }
 
     useEffect(fetchGenres, [])
-    useEffect(createPostBody, [title, author, genre, year, pageCount, imageURL, blurb])
+    // useEffect(createPostBody, [title, author, genre, year, pageCount, imageURL, blurb])
 
     return (
         <>
@@ -118,7 +119,6 @@ export default function AddBook() {
 
                         <label htmlFor="genre">Genre (Required)</label>
                         <select className="border-1 p-2 rounded" onChange={handleInput} id="genre">
-                            <option value={0} defaultValue>Any</option>
                             {genres.map((genre) => {
                                 return <option key={genre.id} value={genre.id}>{genre.name}</option>
                             })}

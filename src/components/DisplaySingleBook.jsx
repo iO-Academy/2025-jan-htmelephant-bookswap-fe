@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClaimForm from "./ClaimForm";
+import ReturnForm from "./ReturnForm";
 
 export default function DisplaySingleBook() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function DisplaySingleBook() {
   const [image, setImage] = useState([]);
   const [year, setYear] = useState([]);
   const [claimedBy, setClaimedBy] = useState("");
+  const [message, setMessage] = useState();
 
   function getBookData() {
     fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
@@ -30,7 +32,7 @@ export default function DisplaySingleBook() {
       });
   }
 
-  useEffect(getBookData, []);
+  useEffect(getBookData, [claimedBy]);
   return (
     <div className="grid grid-cols-1 gap-5 bg-gray-200 p-5 md:grid-cols-2">
       <img src={image} alt="" />
@@ -39,7 +41,31 @@ export default function DisplaySingleBook() {
         <li>{author}</li>
         <li>{year}</li>
         <li>{genre}</li>
-        <ClaimForm claimedBy={claimedBy} id={id} title={title} />
+        {claimedBy && (
+          <li className="text-red-500">
+            This book is claimed by <strong>{claimedBy}</strong>.
+          </li>
+        )}
+        {claimedBy === null ? (
+          <ClaimForm
+            id={id}
+            title={title}
+            getBookData={getBookData}
+            setMessage={setMessage}
+          />
+        ) : (
+          <ReturnForm
+            id={id}
+            getBookData={getBookData}
+            setMessage={setMessage}
+          />
+        )}
+        {(message ?? "").includes("not") ? (
+          <p className="text-red-500">{message}</p>
+        ) : (
+          <p className="text-green-700">{message}</p>
+        )}
+
         <li>{blurb}</li>
       </ul>
     </div>

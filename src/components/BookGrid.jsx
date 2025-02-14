@@ -14,7 +14,14 @@ export default function BookGrid({ claimed }) {
       .then((res) => res.json())
       .then((bookInfo) => {
         setBooks(bookInfo.data);
-        console.log(bookInfo)
+      });
+  }
+
+  function getGenres(){
+    fetch(`https://book-swap-api.dev.io-academy.uk/api/genres`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGenres(data.data);
       });
   }
 

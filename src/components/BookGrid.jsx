@@ -33,27 +33,34 @@ export default function BookGrid({ claimed }) {
 
   return (
     <>
-      <div className="mb-4">
-        <label htmlFor="search" className="mr-2 font-medium">
-          Search Books:
-        </label>
-        <input
-          type="text"
-          id="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="border p-1 rounded"
-          placeholder="Search books..."
-        />
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+
       <div className="p-2 grid grid-cols-1 text-center md:flex">
-        <label className="p-2" htmlFor="genre">Filter By Genre: </label>
-        <select id="genre" className="border-1 p-2 rounded" onChange={(e) => setGenreId(parseInt(e.target.value))}>
-          <option  value={0} defaultValue>Any</option>
-          {genres.map((genre) => {
-            return <option key={genre.id} value={genre.id}>{genre.name}</option>
-          })}
-        </select>
+          <label className="p-2" htmlFor="genre">Filter By Genre: </label>
+          <select id="genre" className="border-1 p-2 rounded" onChange={(e) => setGenreId(parseInt(e.target.value))}>
+            <option  value={0} defaultValue>Any</option>
+            {genres.map((genre) => {
+              return <option key={genre.id} value={genre.id}>{genre.name}</option>
+            })}
+          </select>
+        </div>
+
+        <div className="p-2 grid grid-cols-1 text-center md:flex">
+          <label htmlFor="search" className="p-2">
+            Search Books:
+          </label>
+          <input
+            type="text"
+            id="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="border p-1 rounded"
+            placeholder="Search books..."
+          />
+        </div>
+
+        
+
       </div>
 
       <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-2 md:gap-6 md:p-10 lg:grid-cols-3">

@@ -37,7 +37,7 @@ export default function BookGrid({ claimed }) {
         <select id="genre" className="border-1 p-2 rounded" onChange={(e) => setGenreId(parseInt(e.target.value))}>
           <option  value={0} defaultValue>Any</option>
           {genres.map((genre) => {
-            return <option key={genre.id}  value={genre.id}>{genre.name}</option>
+            return <option key={genre.id} value={genre.id}>{genre.name}</option>
           })}
         </select>
       </div>

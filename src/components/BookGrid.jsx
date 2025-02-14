@@ -32,8 +32,8 @@ export default function BookGrid({ claimed }) {
 
   return (
     <>
-      <div className="p-2">
-        <label htmlFor="genre">Genre: </label>
+      <div className="p-2 grid grid-cols-1 text-center md:flex">
+        <label className="p-2" htmlFor="genre">Filter By Genre: </label>
         <select id="genre" className="border-1 p-2 rounded" onChange={(e) => setGenreId(parseInt(e.target.value))}>
           <option  value={0} defaultValue>Any</option>
           {genres.map((genre) => {

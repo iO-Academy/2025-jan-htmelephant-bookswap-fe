@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 
 export default function AddBook() {
 
-    //image url : https://placehold.co/600x400/EEE/31343C
-
     const [genres, setGenres] = useState([])
 
     const [title, setTitle] = useState("")
@@ -11,10 +9,10 @@ export default function AddBook() {
     const [genre, setGenre] = useState(null)
     const [year, setYear] = useState(NaN)
     const [pageCount, setPageCount] = useState("")
-    const [imageURL, setImageURL] = useState("https://placehold.co/600x400/EEE/31343C") // declare placeholder image if user doesnt input an image url
+    const [imageURL, setImageURL] = useState("") // declare placeholder image if user doesnt input an image url
     const [blurb, setBlurb] = useState("")
     
-    const [postBody, setPostBody] = useState({})
+    // const [postBody, setPostBody] = useState({})
 
     const [errors, setErrors] = useState({})
 
@@ -31,7 +29,7 @@ export default function AddBook() {
             .then(res => res.json())
             .then(data => {
                 setGenres(data.data)
-                setGenre(0)
+                setGenre(1)
         })
     }
 
@@ -45,7 +43,7 @@ export default function AddBook() {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body : JSON.stringify(postBody)
+                body : JSON.stringify(createPostBody())
             })
                 .then(res => {
                     if (res.status == 201) {
@@ -73,7 +71,8 @@ export default function AddBook() {
         if (blurb) body.blurb = blurb
         if (imageURL) body.image = imageURL
 
-        setPostBody(body)
+        // setPostBody(body)
+        return body;
     }
 
     function handleInput(e){
@@ -103,12 +102,11 @@ export default function AddBook() {
     }
 
     useEffect(fetchGenres, [])
-    useEffect(createPostBody, [title, author, genre, year, pageCount, imageURL, blurb])
+    // useEffect(createPostBody, [title, author, genre, year, pageCount, imageURL, blurb])
 
     return (
         <>
             <div className="flex justify-center">
-
                 {!success && 
                     <form onSubmit={submitBook} className="grid grid-cols-1 w-10/12 gap-2 md:w-4/12">
                         <label htmlFor="title">Title (Required)</label>
@@ -121,7 +119,6 @@ export default function AddBook() {
 
                         <label htmlFor="genre">Genre (Required)</label>
                         <select className="border-1 p-2 rounded" onChange={handleInput} id="genre">
-                            <option value={0} defaultValue>Any</option>
                             {genres.map((genre) => {
                                 return <option key={genre.id} value={genre.id}>{genre.name}</option>
                             })}
@@ -147,7 +144,6 @@ export default function AddBook() {
                 }
 
                 {success && <p className="text-center text-2xl p-4">You Submitted a book! <br /> Thank You!</p>}
-
             </div>
         </>
     )

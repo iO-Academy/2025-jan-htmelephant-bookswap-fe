@@ -16,7 +16,7 @@ export default function DisplaySingleBook() {
   const [image, setImage] = useState([]);
   const [year, setYear] = useState([]);
   const [claimedBy, setClaimedBy] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
 
   function getBookData() {
     fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
@@ -60,7 +60,12 @@ export default function DisplaySingleBook() {
             setMessage={setMessage}
           />
         )}
-        {message && <p className="text-green-700">{message}</p>}
+        {(message ?? "").includes("not") ? (
+          <p className="text-red-500">{message}</p>
+        ) : (
+          <p className="text-green-700">{message}</p>
+        )}
+
         <li>{blurb}</li>
       </ul>
     </div>

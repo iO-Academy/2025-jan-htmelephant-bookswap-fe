@@ -22,9 +22,7 @@ export default function ReturnForm({ id, getBookData, setMessage }) {
           setErrors(data.errors);
         } else {
           setMessage(data.message);
-
           getBookData();
-          console.log(data);
         }
       });
   }

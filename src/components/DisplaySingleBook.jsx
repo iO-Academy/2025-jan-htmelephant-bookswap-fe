@@ -63,7 +63,7 @@ export default function DisplaySingleBook() {
         {(message ?? "").includes("not") ? (
           <p className="text-red-500">{message}</p>
         ) : (
-          <p className="text-green-700">{message}</p>
+          <p className="text-green-70">{message}</p>
         )}
 
         <li>{blurb}</li>

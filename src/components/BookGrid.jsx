@@ -6,6 +6,8 @@ export default function BookGrid({ claimed }) {
   const [genres, setGenres] = useState([])
   const [genreId, setGenreId] = useState(0)
 
+  const [noBooks, setNoBooks] = useState(false)
+
   function getBooks(genreId = 0, searching) {
     let url = `https://book-swap-api.dev.io-academy.uk/api/books?claimed=${claimed}`
     if (genreId !== 0) url += `&genre=${genreId}`;
@@ -14,6 +16,11 @@ export default function BookGrid({ claimed }) {
       .then((res) => res.json())
       .then((bookInfo) => {
         setBooks(bookInfo.data);
+        if (bookInfo.data.length == 0){
+          setNoBooks(true)
+        } else {
+          setNoBooks(false)
+        }
       });
   }
 
@@ -58,9 +65,7 @@ export default function BookGrid({ claimed }) {
             placeholder="Search books..."
           />
         </div>
-
         
-
       </div>
 
       <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-2 md:gap-6 md:p-10 lg:grid-cols-3">
@@ -77,6 +82,8 @@ export default function BookGrid({ claimed }) {
           );
         })}
       </div>
+
+      {noBooks && <p className="text-center text-2xl">No Books Found!</p>}
 
     </>
   );

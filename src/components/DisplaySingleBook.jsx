@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClaimForm from "./ClaimForm";
 import ReturnForm from "./ReturnForm";
+import AddReview from "./AddReview";
 
 export default function DisplaySingleBook() {
   const { id } = useParams();
@@ -29,6 +30,7 @@ export default function DisplaySingleBook() {
         setGenre(bookInfo.data.genre.name);
         setImage(bookInfo.data.image);
         setClaimedBy(bookInfo.data.claimed_by_name);
+        console.log(bookInfo.data)
       });
   }
 
@@ -67,6 +69,8 @@ export default function DisplaySingleBook() {
         )}
 
         <li>{blurb}</li>
+        <h2 className="text-2xl font-light">Reviews</h2>
+        <AddReview id={id} />
       </ul>
     </div>
   );

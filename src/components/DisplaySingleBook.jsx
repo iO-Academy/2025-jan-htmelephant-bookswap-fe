@@ -30,7 +30,6 @@ export default function DisplaySingleBook() {
         setGenre(bookInfo.data.genre.name);
         setImage(bookInfo.data.image);
         setClaimedBy(bookInfo.data.claimed_by_name);
-        console.log(bookInfo.data)
       });
   }
 

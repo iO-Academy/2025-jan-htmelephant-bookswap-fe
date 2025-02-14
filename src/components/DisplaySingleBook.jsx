@@ -17,6 +17,8 @@ export default function DisplaySingleBook() {
   const [year, setYear] = useState([]);
   const [claimedBy, setClaimedBy] = useState("");
   const [message, setMessage] = useState();
+  const [reviewName, setReviewName] = useState([]);
+  const [reviewRating, setReviewRating] = useState([]);
 
   function getBookData() {
     fetch(`https://book-swap-api.dev.io-academy.uk/api/books/${id}`)
@@ -29,6 +31,9 @@ export default function DisplaySingleBook() {
         setGenre(bookInfo.data.genre.name);
         setImage(bookInfo.data.image);
         setClaimedBy(bookInfo.data.claimed_by_name);
+        setReviewName(bookInfo.data.reviews.name);
+        setReviewRating(bookInfo.data.reviews.rating);
+        console.log(bookInfo.data.reviews[0].name);
       });
   }
 
